@@ -1,15 +1,13 @@
-// this is unstable feature, need config with
-// rustup override set nightly 
-// #![feature(test)]
-// extern crate test;
 
-// use test::Bencher;
+use criterion::{criterion_group, criterion_main, Criterion};
 
-// #[bench]
-// fn add_bench(b: &mut Bencher) {
-//     b.iter(|| {
-//         let res  = common::add(10,20);
-//         println!("bench add {}",res);
-//     })
-// }
+fn add_bench2(c: &mut Criterion) {
+    c.bench_function("add", |b| {
+        b.iter(|| common::add(2,2));
+    });
+}
 
+
+criterion_group!(benches, add_bench2);
+
+criterion_main!(benches);
